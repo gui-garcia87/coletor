@@ -1,0 +1,99 @@
+1            ;COMBINADO 1 PESSOA           ;   30.90;    0.00;   -1.00
+2            ;COMBINADO 2 PESSOAS          ;   45.90;    0.00;    0.00
+3            ;COMBINADO ESPECIAL 1 PESSOA  ;   40.90;    0.00;    0.00
+4            ;COMBINADO ESPECIAL 2 PESSOAS ;   68.00;    0.00;    0.00
+5            ;COMBINADO ESPECIAL 3 PESSOAS ;   78.90;    0.00;    0.00
+6            ;COMBINADO SALMAO 1 PESSOA    ;   30.90;    0.00;    0.00
+7            ;COMBINADO SALMAO 2 PESSOAS   ;   45.90;    0.00;    0.00
+8            ;TEMAKI CALIFORNIA            ;   14.90;    0.00;    0.00
+9            ;TEMAKI KANI KAMA             ;   15.90;    0.00;    0.00
+10           ;TEMAKI SKIN                  ;   14.90;    0.00;    0.00
+11           ;TEMAKI SALMAO                ;   16.90;    0.00;    0.00
+12           ;TEMAKI FILADELFIA            ;   17.90;    0.00;    0.00
+13           ;TEMAKI PEIXE BRANCO          ;   17.90;    0.00;    0.00
+14           ;TEMAKI ATUM                  ;   17.90;    0.00;    0.00
+15           ;TEMAKI SHIMEJI               ;   16.90;    0.00;    0.00
+16           ;TEMAKI EBI                   ;   19.90;    0.00;    0.00
+17           ;TEMAKI EBI TEN               ;   20.90;    0.00;    0.00
+18           ;TEMAKI HOT HOLL              ;   16.90;    0.00;    0.00
+19           ;SUSHI SIMPLES                ;   29.90;    0.00;    0.00
+20           ;SUSHI ESPECIAL               ;   35.90;    0.00;    0.00
+21           ;SUSHI SALMAO                 ;   32.90;    0.00;    0.00
+22           ;SUSHI JOU                    ;   18.90;    0.00;    0.00
+23           ;SUSHI BATERA                 ;   18.90;    0.00;    0.00
+24           ;HOSSOMAKI KAPPA MAKI         ;   11.90;    0.00;    0.00
+25           ;HOSSOMAKI KANI MAKI          ;   12.90;    0.00;    0.00
+26           ;HOSSOMAKI SALMAO MAKI        ;   14.90;    0.00;    0.00
+27           ;HOSSOMAKI TEKA MAKI          ;   15.90;    0.00;    0.00
+28           ;URAMAKI CALIFORNIA           ;   12.90;    0.00;    0.00
+29           ;URAMAKI SKIN                 ;   14.90;    0.00;    0.00
+30           ;URAMAKI SALMAO               ;   16.90;    0.00;    0.00
+31           ;URAMAKI MAGURO               ;   17.90;    0.00;    0.00
+32           ;URAMAKI EBI TEN              ;   18.90;    0.00;    0.00
+33           ;URAMAKI FILADELFIA           ;   18.90;    0.00;    0.00
+34           ;HOT ROLL                     ;   17.90;    0.00;    0.00
+35           ;HOT ESPECIAL                 ;   19.90;    0.00;    0.00
+36           ;BANANA                       ;   15.90;    0.00;    0.00
+37           ;SASHIMI MISTO                ;   40.90;    0.00;    0.00
+38           ;SASHIMIS DE ATUM             ;   39.90;    0.00;    0.00
+39           ;SASHIMIS DE SALMAO           ;   39.90;    0.00;    0.00
+40           ;SASHIMIS DE POLVO            ;   39.90;    0.00;    0.00
+41           ;TEPPAN YAKI FRANGO           ;   24.90;    0.00;    0.00
+42           ;TEPPAN YAKI SALMAO           ;   34.90;    0.00;    0.00
+43           ;TEPPAN YAKI LULA             ;   34.90;    0.00;    0.00
+44           ;TEPPAN YAKI FRUTOS DO MAR    ;   40.90;    0.00;    0.00
+45           ;TEMPURA LEGUMES              ;   21.90;    0.00;    0.00
+46           ;TEMPURA MISTO                ;   28.90;    0.00;    0.00
+47           ;TEMPURA CAMARAO              ;   44.90;    0.00;    0.00
+48           ;CARPACCIO                    ;   33.90;    0.00;    0.00
+49           ;CEVICHE                      ;   32.90;    0.00;    0.00
+50           ;SUNOMONO                     ;    7.90;    0.00;    0.00
+51           ;MISSOSHIRU                   ;    7.90;    0.00;    0.00
+52           ;GUIOZA                       ;   13.90;    0.00;    0.00
+53           ;HARUMAKI                     ;   13.90;    0.00;    0.00
+54           ;HARUMAKI DE QUEIJO           ;   17.90;    0.00;    0.00
+55           ;SHIMEJI                      ;   24.90;    0.00;    0.00
+56           ;YAKISOBA VEGETARIANO         ;   22.90;    0.00;    0.00
+57           ;YAKISOBA DE CARNE            ;   25.90;    0.00;    0.00
+58           ;YAKISOBA DE FRANGO           ;   24.90;    0.00;    0.00
+59           ;YAKISOBA MISTO               ;   27.90;    0.00;    0.00
+60           ;YAKISOBA FRUTOS DO MAR       ;   38.90;    0.00;    0.00
+61           ;SUCOS NATURAIS               ;    8.90;    0.00;    0.00
+62           ;SUCO DE POLPA MORANGO        ;    6.90;    0.00;    0.00
+63           ;SUCOS DE POLPA DE MELAO      ;    6.90;    0.00;    0.00
+64           ;SUCOS DE POLPA ABACAXI       ;    6.90;    0.00;    0.00
+65           ;SUCO DE POLPA ABACAXI C/ HORT;    6.90;    0.00;    0.00
+66           ;SUCO DE POLPA COM MANGA      ;    6.90;    0.00;    0.00
+67           ;SUCO DE POLPA DE GOIABA      ;    6.90;    0.00;    0.00
+68           ;AGUA                         ;    4.90;    0.00;    0.00
+69           ;AGUA COM GAS                 ;    5.90;    0.00;    0.00
+70           ;FEEL GOOD                    ;    6.90;    0.00;    0.00
+71           ;REFRIGERANTE                 ;    6.90;    0.00;    0.00
+72           ;CAFE EXPRESSO                ;    5.20;    0.00;    0.00
+73           ;HENIKEN                      ;    9.90;    0.00;    0.00
+74           ;STELLA                       ;    9.90;    0.00;    0.00
+75           ;KIRIN ICHIBAN                ;   10.90;    0.00;    0.00
+76           ;EISEBAN                      ;   10.90;    0.00;    0.00
+77           ;ORIGINAL                     ;    8.90;    0.00;    0.00
+78           ;BRAMHA                       ;    8.90;    0.00;    0.00
+79           ;SKOL                         ;    8.90;    0.00;    0.00
+80           ;WISKY  8 ANOS                ;   21.90;    0.00;    0.00
+81           ;WISKY 12 ANOS                ;   25.90;    0.00;    0.00
+82           ;CAIPIRINHA                   ;   16.90;    0.00;    0.00
+83           ;CAIPIROSKA                   ;   17.90;    0.00;    0.00
+84           ;CAIPIROSKA IMPORTADA         ;   23.90;    0.00;    0.00
+85           ;SAKERINHA                    ;   17.00;    0.00;    0.00
+86           ;SAKERINHA IMPORTADA          ;   27.90;    0.00;    0.00
+87           ;TEMPURA DE SORVETE           ;   15.90;    0.00;    0.00
+88           ;BANANA FLAMBADA              ;   15.90;    0.00;    0.00
+89           ;PETIT GATEAU                 ;   15.90;    0.00;    0.00
+90           ;CREME DE PAPAYA              ;   15.90;    0.00;    0.00
+91           ;BOLA DE SORVETE              ;    7.90;    0.00;    0.00
+92           ;RODIZIO ALMOCO               ;    0.00;    0.00;    0.00
+93           ;RODIZIO JANTAR               ;   49.90;    0.00;    0.00
+94           ;RODIZIO FINAL DE SEMANA E FER;   49.90;    0.00;    0.00
+95           ;SHOGAYAMI                    ;   24.90;    0.00;    0.00
+96           ;CHIKEN KATSU                 ;   24.90;    0.00;    0.00
+97           ;H2O                          ;    6.90;    0.00;    0.00
+98           ;SuCO NATURAL DE MELANCIA     ;    8.90;    0.00;    0.00
+99           ;SUCO NATURAL DE MARACUJA     ;    8.90;    0.00;    0.00
