@@ -37,10 +37,10 @@ public class ProductCreateFragment extends Fragment {
 
         this.model = new ProductModel(UUID.randomUUID().toString(), "", "", 0);
 
-        this.txtName = (EditText)layout.findViewById(R.id.txtName);
-        this.txtCode = (TextView)layout.findViewById(R.id.txtCode);
-        this.txtQnt = (TextView)layout.findViewById(R.id.txtQnt);
-        this.btnCapture = (Button)layout.findViewById(R.id.btnCapture);
+        this.txtName = layout.findViewById(R.id.txtName);
+        this.txtCode = layout.findViewById(R.id.txtCode);
+        this.txtQnt = layout.findViewById(R.id.txtQnt);
+        this.btnCapture = layout.findViewById(R.id.btnCapture);
         this.btnCapture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +51,7 @@ public class ProductCreateFragment extends Fragment {
             }
         });
 
-        this.btnAdd = (Button)layout.findViewById(R.id.btnAdd);
+        this.btnAdd = layout.findViewById(R.id.btnAdd);
         this.btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +66,7 @@ public class ProductCreateFragment extends Fragment {
             }
         });
 
-        this.btnCancel = (Button)layout.findViewById(R.id.btnCancel);
+        this.btnCancel = layout.findViewById(R.id.btnCancel);
         this.btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

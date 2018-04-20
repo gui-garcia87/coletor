@@ -20,9 +20,13 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
@@ -41,21 +45,54 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
         this.createFragment = null;
 
-       floatingActionButton = findViewById(R.id.fab);
+        floatingActionButton = findViewById(R.id.fab);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createFragment = new ProductCreateFragment();
                 replaceFragment(createFragment);
                 floatingActionButton.setVisibility(View.GONE);
+//                saveTxt();
             }
         });
-
-
 
         this.products = retornoTXT();
 
         createProductList();
+
+
+    }
+
+    public void saveTxt(){
+
+        String s = null;
+        StringBuilder builder = new StringBuilder();
+
+       for (int i = 0; i < this.products.size(); i++){
+           builder.append(products.get(i).Id);
+           builder.append(";");
+           builder.append(products.get(i).Name);
+           builder.append(";");
+           builder.append(products.get(i).qnt);
+           builder.append(";");
+           builder.append(products.get(i).Barcode);
+           builder.append("\n");
+       }
+
+       Log.i(TAG,builder.toString());
+
+       s = builder.toString();
+
+        try {
+            FileOutputStream file = openFileOutput("coletor.TXT",MODE_PRIVATE);
+
+            PrintWriter writer = new PrintWriter(file);
+            writer.print(s);
+            Log.i(TAG, getFilesDir().getPath());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
     }
@@ -129,15 +166,6 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
         ft.commit();
     }
 
- /*   public ArrayList<ProductModel> fakeList(){
-        ArrayList<ProductModel> result = new ArrayList<ProductModel>();
-        result.add(new ProductModel(UUID.randomUUID().toString(), "Keyboard", "1212121212222",0));
-        result.add(new ProductModel(UUID.randomUUID().toString(), "Mouse", "2323234343231",0));
-        result.add(new ProductModel(UUID.randomUUID().toString(), "Notebook", "90909099989898",0));
-        result.add(new ProductModel(UUID.randomUUID().toString(), "Printer", "0909878787654",0));
-        return result;
-    }*/
-
     @Override
     public void beforeCreate(ProductModel model) {
 
@@ -183,7 +211,6 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
                 ProductModel model = new ProductModel(products.get(i).Id, products.get(i).Name, products.get(i).Barcode, products.get(i).qnt);
 
-//                return true;
                return model;
            }
         }
