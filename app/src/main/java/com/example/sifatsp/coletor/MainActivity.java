@@ -1,9 +1,19 @@
 package com.example.sifatsp.coletor;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,26 +31,34 @@ import com.google.zxing.integration.android.IntentResult;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.Reader;
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements OnProductListener{
 
+
     private static final String TAG = "MyActivity";
+
     private ArrayList<ProductModel> products;
+
     private ProductCreateFragment createFragment = null;
+
     private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Log.i(TAG, "onCreate: retorna onCreate");
 
         this.createFragment = null;
@@ -49,10 +67,14 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 createFragment = new ProductCreateFragment();
+
                 replaceFragment(createFragment);
+
                 floatingActionButton.setVisibility(View.GONE);
-//                saveTxt();
+
+                saveTxt();
             }
         });
 
@@ -60,10 +82,11 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
         createProductList();
 
-
     }
 
+
     public void saveTxt(){
+
 
         String s = null;
         StringBuilder builder = new StringBuilder();
@@ -83,66 +106,160 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
        s = builder.toString();
 
-        try {
-            FileOutputStream file = openFileOutput("coletor.TXT",MODE_PRIVATE);
+        Log.i("Arquivo", "arquivo salvo");
 
-            PrintWriter writer = new PrintWriter(file);
-            writer.print(s);
-            Log.i(TAG, getFilesDir().getPath());
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        if (isExternalStorageWritable()) {
+
+            System.out.println(isExternalStorageWritable());
+
+
+            File folder = new File(Environment.getExternalStorageDirectory() + "/COLETA");
+            if (!folder.exists()) {
+                folder.mkdir();
+            }
+
+            System.out.println(folder.isDirectory());
+
+            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), "/COLETA/" + "coletor.txt");
+
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED){
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1000);
+            }
+
+
+            try {
+
+
+                FileOutputStream outputStream = new FileOutputStream(file);
+
+                PrintWriter writer = new PrintWriter(outputStream);
+                writer.print(s);
+                writer.flush();
+                writer.close();
+                Log.i(TAG, getFilesDir().getPath());
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
-
-
     }
 
 
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isExternalStorageReadable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state) ||
+                Environment.MEDIA_MOUNTED_READ_ONLY.equals(state)) {
+            return true;
+        }
+        return false;
+    }
+
+    public File getStorageDir(String coletor) {
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+            }
+        }
+
+
+            File file = new File(Environment.getExternalStorageDirectory() + "/COLETA",coletor);
+
+
+            if(file.exists()){
+                Log.e("File", "file created");
+                Log.i("File", file.getAbsolutePath());
+            }
+
+        return file;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 1000:
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(this, "Permissao Concedida", Toast.LENGTH_SHORT);
+                } else {
+                    Toast.makeText(this, "Permissao nao Concedida", Toast.LENGTH_SHORT);
+                    finish();
+                }
+        }
+    }
 
     public ArrayList<ProductModel> retornoTXT(){
 
         ArrayList<ProductModel> listTxt = new ArrayList<ProductModel>();
-        String s = null;
+
+
+        String s = "coletor.txt";
         InputStream inputStream = null;
         BufferedReader reader = null;
 
 
+
         try {
-            inputStream = getResources().openRawResource(R.raw.coletor);
-            reader = new BufferedReader(new InputStreamReader(inputStream));
 
-            String line;
+            if (isExternalStorageReadable()) {
 
+                try {
+                    inputStream = new FileInputStream(getStorageDir(s));
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                }
 
-            while ((line = reader.readLine()) != null){
+            } else {
 
-                String[] stringsSeparada = line.split(";");
-                ProductModel model = new ProductModel(stringsSeparada[0],stringsSeparada[1],stringsSeparada[0],Double.parseDouble(stringsSeparada[4]));
-                listTxt.add(model);
+                Toast.makeText(getApplicationContext(), "Sem Acesso ao Arquivo", Toast.LENGTH_LONG).show();
 
             }
+                reader = new BufferedReader(new InputStreamReader(inputStream));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (inputStream != null){
-                try {
-                    inputStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
+                String line;
+
+
+                while ((line = reader.readLine()) != null) {
+
+                    String[] stringsSeparada = line.split(";");
+                    ProductModel model = new ProductModel(stringsSeparada[0], stringsSeparada[1], stringsSeparada[2], Double.parseDouble(stringsSeparada[3]));
+                    listTxt.add(model);
+
+                }
+
+            } catch(IOException e){
+                e.printStackTrace();
+            } finally{
+                if (inputStream != null) {
+                    try {
+                        inputStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
-            if (reader != null){
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
+            return listTxt;
 
-        return listTxt;
     }
 
     private void createProductList(){
@@ -177,10 +294,12 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
                 this.products.set(i,model);
                 createProductList();
+                floatingActionButton.setVisibility(View.VISIBLE);
             } else{
 
                 this.products.add(model);
                 createProductList();
+                floatingActionButton.setVisibility(View.VISIBLE);
             }
         }
 
@@ -229,7 +348,6 @@ public class MainActivity extends AppCompatActivity implements OnProductListener
 
                 Log.i("teste", barcode);
                 if(comparador(barcode).Barcode.equals(barcode)) {
-//                    createFragment.setBarcode(barcode);
                       createFragment.setDados(comparador(barcode));
                      Toast.makeText(getApplicationContext(), "produto adicionado", Toast.LENGTH_LONG).show();
                 }else
